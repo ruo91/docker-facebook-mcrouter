@@ -1,6 +1,12 @@
 # Facebook - MCRouter
 See [Link] for more information.
 
+### Run container
+```
+root@ruo91:~# docker run -d --name="mcrouter" -h "mcrouter" ruo91/facebook-mcrouter:1.x
+```
+or
+
 ### Build MCRouter
 ```
 root@ruo91:~# git clone https://github.com/ruo91/docker-facebook-mcrouter /opt/docker-facebook-mcrouter
