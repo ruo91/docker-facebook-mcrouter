@@ -24,14 +24,18 @@ ENV SRC_DIR /opt
 # Facebook mcrouter
 ENV MCROUTER_HOME $SRC_DIR/mcrouter
 RUN cd $SRC_DIR && git clone https://github.com/facebook/mcrouter.git mcrouter-source
-ADD conf/get_and_build_everything.sh $SRC_DIR/mcrouter-source/mcrouter/scripts/get_and_build_everything.sh
 RUN chmod a+x $SRC_DIR/mcrouter-source/mcrouter/scripts/get_and_build_everything.sh
 RUN cd $SRC_DIR/mcrouter-source/mcrouter/scripts && ./install_ubuntu_14.04.sh $SRC_DIR/mcrouter
 RUN mkdir /var/spool/mcrouter && rm -rf $SRC_DIR/mcrouter-source \
  && echo '' >> /etc/profile \
  && echo '# Facebook mcrouter' >> /etc/profile \
  && echo "export MCROUTER_HOME=$MCROUTER_HOME" >> /etc/profile \
- && echo 'export PATH=$PATH:$MCROUTER_HOME/install/bin' >> /etc/profile
+ && echo 'export PATH=$PATH:$MCROUTER_HOME/install/bin' >> /etc/profile \
+ && echo '' >> /etc/profile 
+
+# Issue - locale::facet::_S_create_c_locale name not valid
+RUN echo 'export LANG=C' >> /etc/profile \
+ && echo 'export LC_ALL=C' >> /etc/profile
 
 # Supervisor
 RUN mkdir -p /var/log/supervisor
