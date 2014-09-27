@@ -10,6 +10,7 @@ or
 ### Build MCRouter
 ```
 root@ruo91:~# git clone https://github.com/ruo91/docker-facebook-mcrouter /opt/docker-facebook-mcrouter
+root@ruo91:~# docker build --rm -t mcrouter /opt/docker-facebook-mcrouter
 ```
 
 ### Run container
